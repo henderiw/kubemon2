@@ -17,7 +17,7 @@ import (
 )
 
 // namespaceController implements the Controller interface for managing Kubernetes namespaces
-// and syncing them to the Calico datastore as Profiles.
+// and syncing them to the datastore as Profiles.
 type namespaceController struct {
 	indexer  cache.Indexer
 	informer cache.Controller
@@ -26,6 +26,7 @@ type namespaceController struct {
 }
 
 // NewNamespaceController returns a controller which manages Namespace objects.
+// ..
 func NewNamespaceController(ctx context.Context, k8sClientset *kubernetes.Clientset) controller.Controller {
 
 	// Create a Namespace watcher.
@@ -34,8 +35,8 @@ func NewNamespaceController(ctx context.Context, k8sClientset *kubernetes.Client
 	// create the workqueue
 	queue := workqueue.NewRateLimitingQueue(workqueue.DefaultControllerRateLimiter())
 
-	// Bind the calico cache to kubernetes cache with the help of an informer. This way we make sure that
-	// whenever the kubernetes cache is updated, changes get reflected in the Calico cache as well.
+	// Bind the cache to kubernetes cache with the help of an informer. This way we make sure that
+	// whenever the kubernetes cache is updated, changes get reflected in the cache as well.
 	indexer, informer := cache.NewIndexerInformer(listWatcher, &v1.Namespace{}, 0, cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
 			log.Info("Got ADD event for Namespace: %#v", obj)

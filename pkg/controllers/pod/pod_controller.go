@@ -23,7 +23,7 @@ type WorkloadEndpointCache struct {
 }
 
 // podController implements the Controller interface for managing Kubernetes pods
-// and syncing them to the Calico datastore as WorkloadEndpoints.
+// and syncing them to the datastore as WorkloadEndpoints.
 type podController struct {
 	indexer  cache.Indexer
 	informer cache.Controller

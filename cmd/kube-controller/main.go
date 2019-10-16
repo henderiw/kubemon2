@@ -171,7 +171,7 @@ func runHealthChecks(ctx context.Context, s *status.Status, k8sClientset *kubern
 	}
 }
 
-// getClients builds and returns Kubernetes and Calico clients.
+// getClients builds and returns Kubernetes and clients.
 func getClients(kubeconfig string) (*kubernetes.Clientset, error) {
 
 	// Build the Kubernetes client, we support in-cluster config and kubeconfig
